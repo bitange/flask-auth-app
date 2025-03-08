@@ -4,11 +4,17 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from models import db, User
 from forms import RegistrationForm, LoginForm
 from config import Config
+from flask_migrate import Migrate
+
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
 db.init_app(app)
+   
+migrate = Migrate(app, db)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
